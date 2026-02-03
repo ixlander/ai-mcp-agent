@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  # FastAPI Application
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-mcp-agent-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MCP_SERVER_HOST=localhost
+      - MCP_SERVER_PORT=3001
+    volumes:
+      - ./data:/app/data
+      - ./app:/app/app
+      - ./mcp_server:/app/mcp_server
+    depends_on:
+      - mcp-server
+    networks:
+      - ai-mcp-network
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # MCP Server
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-mcp-agent-server
+    ports:
+      - "3001:3001"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+      - ./mcp_server:/app/mcp_server
+    networks:
+      - ai-mcp-network
+    command: python -m mcp_server.mcp_server
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 3001), timeout=1)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+networks:
+  ai-mcp-network:
+    driver: bridge
