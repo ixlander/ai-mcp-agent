@@ -1,4 +1,4 @@
-"# AI Engineer Test Task - AI MCP Agent
+"# AI MCP Agent
 
 > AI Agent with MCP Integration - Enterprise-ready architecture for product management
 
@@ -376,56 +376,6 @@ ai-mcp-agent/
 - Добавить rate limiting
 - Настроить firewall правила
 
-## 📝 Требования к заданию
-
-### Часть 1: MCP Server ✅ (35 баллов)
-
-- [x] Использует FastMCP с @mcp.tool декораторами (10 баллов)
-- [x] Реализованы все 4 инструмента (8 баллов)
-- [x] Работает через stdio (4 балла)
-- [x] Обрабатывает ошибки (3 балла)
-
-### Часть 2: LangGraph Agent ✅ (35 баллов)
-
-- [x] Подключается к MCP серверу (10 баллов)
-- [x] Использует tools из MCP (8 баллов)
-- [x] Имеет кастомные tools (7 баллов)
-
-### Часть 3: FastAPI + Docker ✅ (30 баллов)
-
-- [x] POST /api/v1/agent/query работает (8 баллов)
-- [x] Dockerfile и docker-compose.yml (7 баллов)
-- [x] Запускается через docker-compose up (5 баллов)
-
-### Дополнительные (20 баллов)
-
-- [x] Чистая архитектура (6 баллов)
-- [x] Type hints + docstrings (5 баллов)
-- [x] Логирование (5 баллов)
-- [x] .gitignore (4 балла)
-
-### Тесты и документация (10 баллов)
-
-- [x] 27+ тестов (6 баллов)
-- [x] README с инструкциями (4 балла)
-
-## 📈 Бонусные возможности
-
-### Bonus 1: SQLite Персистентность (не реализовано, +5 баллов)
-
-Можно заменить JSON на SQLite с помощью:
-```python
-import sqlite3
-# Реализовать CRUD операции через SQL
-```
-
-### Bonus 2: Второй MCP Server (не реализовано, +10 баллов)
-
-Можно создать сервер для заказов с tools:
-- `create_order(product_id, quantity)`
-- `list_orders()`
-- `get_order(order_id)`
-
 ## 🛠️ Разработка
 
 ### Добавление нового tool
@@ -506,15 +456,6 @@ docker-compose build --no-cache
 
 MIT License - свободен для использования в образовательных целях
 
-## 👥 Автор
-
-Создано как решение для AI Engineer тестового задания
-
-## 🤝 Контрибьютинг
-
-Suggestions и улучшения приветствуются!
-
 ---
 
-**Обновлено:** Февраль 2026
 **Версия:** 1.0.0" 
